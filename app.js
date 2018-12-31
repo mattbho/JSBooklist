@@ -10,20 +10,7 @@ class Book {
 //UI Class: Handle UI Tasks
 class UI {
   static displayBooks() {
-    const StoredBooks = [
-      {
-        title: "Book One",
-        author: "John Doe",
-        isbn: "123135664"
-      },
-      {
-        title: "Book Two",
-        author: "Bobby Mognahan",
-        isbn: "123135859"
-      }
-    ];
-
-    const books = StoredBooks;
+    const books = Store.getBooks();
 
     books.forEach(book => UI.addBookToList(book));
   }
@@ -139,5 +126,6 @@ document.querySelector("#book-form").addEventListener("submit", e => {
 //Event: Remove a Book
 document.querySelector("#book-list").addEventListener("click", e => {
   UI.deleteBook(e.target);
+  Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
   UI.showAlert('Book Deleted', 'success');
 });
